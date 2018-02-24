@@ -1,30 +1,47 @@
 class Sorter {
   constructor() {
-    // your implementation
+    this.arr = [];
+    this.compareFunction = function (a, b) {
+      return (a - b);
+    };
   }
 
   add(element) {
-    // your implementation
+    this.arr.push(element);
   }
 
   at(index) {
-    // your implementation
+    return this.arr[index];
   }
 
   get length() {
-    // your implementation
+    return this.arr.length;
   }
 
   toArray() {
-    // your implementation
+    return this.arr;
   }
 
   sort(indices) {
-    // your implementation
+    indices.sort(function (a, b) {
+      return (a - b);
+    });
+
+    var arrOfTemp = []; // временный массив
+
+    for (let i = 0; i < indices.length; i++) {
+      arrOfTemp.push(this.arr[indices[i]]); // формируем массив по индексам
+    }
+
+    arrOfTemp.sort(this.compareFunction); // сортируем временный массив согласно параметру сортировки - compareFunction
+
+    for (let i = 0; i < arrOfTemp.length; i++) {
+      this.arr[indices[i]] = arrOfTemp[i]; // выводим свой массив в порядке отсортированного
+    }
   }
 
   setComparator(compareFunction) {
-    // your implementation
+    this.compareFunction = compareFunction;
   }
 }
 
